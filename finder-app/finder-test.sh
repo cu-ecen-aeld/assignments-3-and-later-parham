@@ -7,7 +7,8 @@ set -u
 
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
-WRITEDIR=/tmp/aeld-data
+# WRITEDIR=/tmp/aeld-data
+WRITEDIR=/home/phm/aeld-data
 username=$(cat conf/username.txt)
 
 if [ $# -lt 3 ]
@@ -37,6 +38,7 @@ assignment=`cat ../conf/assignment.txt`
 if [ $assignment != 'assignment1' ]
 then
 	mkdir -p "$WRITEDIR"
+	echo "${WRITEDIR} created"
 
 	#The WRITEDIR is in quotes because if the directory path consists of spaces, then variable substitution will consider it as multiple argument.
 	#The quotes signify that the entire string in WRITEDIR is a single string.
@@ -60,7 +62,8 @@ done
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
 
 # remove temporary directories
-rm -rf /tmp/aeld-data
+rm -rf $WRITEDIR
+# rm -rf /tmp/aeld-data
 
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
