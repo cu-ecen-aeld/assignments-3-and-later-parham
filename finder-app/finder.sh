@@ -2,6 +2,7 @@
 # Tester script for assignment 1
 # Author: Parham Nooralishahi (PHM66)
 
+
 # Ensure the arguments are provided!
 if [ $# -eq 0 ]; then
     echo "Arguments are mandatory"
