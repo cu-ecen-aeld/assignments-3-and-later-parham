@@ -29,7 +29,7 @@ echo "SEARCHSTR = $searchstr"
 
 # The number of files in the FILESDIR directory.
 X=$(find "$filesdir" -type f | wc -l)
-Y=$(grep -rl "parham" ./ | wc -l)
+Y=$(grep -rl $searchstr $filesdir  | wc -l)
 
 
 echo "The number of files are $X and the number of matching lines are $Y"
