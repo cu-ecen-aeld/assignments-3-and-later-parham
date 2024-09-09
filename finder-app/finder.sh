@@ -4,7 +4,7 @@
 
 
 # Ensure the arguments are provided!
-if [ $# -eq 0 ]; then
+if [ $# -lt 2 ]; then
     echo "Arguments are mandatory"
     exit 1
 fi
