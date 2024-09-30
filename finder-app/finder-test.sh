@@ -1,6 +1,6 @@
 #!/bin/sh
 # Tester script for assignment 1 and assignment 2
-# Author: Siddhant Jajoo
+# Author: Parham Nooralishahi
 
 set -e
 set -u
@@ -50,9 +50,10 @@ then
 	fi
 fi
 
-echo "Removing the old writer utility and compiling as a native application"
-make clean
-make
+# Omitting lines below to replace with cross-compile
+# echo "Removing the old writer utility and compiling as a native application"
+# make clean
+# make
 
 for i in $( seq 1 $NUMFILES)
 do
