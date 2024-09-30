@@ -1,11 +1,38 @@
-CC = gcc
+# Makefile for assignment2
 
-ifdef CROSS_COMPILE
-	CC = $(CROSS_COMPILE)gcc
+CC := $(CROSS_COMPILE)gcc
+#LD := $(CROSS_COMPILE)gcc
+TARGET := writer
+CFLAGS := -Wall -Wextra -O2
+SRC := $(TARGET).c
+OBJ := $(SRC:.c=.o)
+#LDFLAGS :=
+
+ifeq ($(ARCH), arm64)
+	CFLAGS += -g
 endif
 
-all:
-	$(CC) writer.c -o writer
+# target to compile the application
+all: $(TARGET)
 
-clean:
-	rm writer
+#rule for compiling .c files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+#rule for compiling .c files	
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ 
+
+#rule for install software
+install: $(TARGET)
+	cp $(TARGET) $(OUT_DIR)
+
+#rule for printing variables	
+print-%:
+	@echo $* = $($*)
+
+# target to clean the application and object files
+clean: 
+	rm -f $(TARGET) $(OBJ)
+
+.PHONY: all install print-% clean
